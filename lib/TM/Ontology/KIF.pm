@@ -10,8 +10,8 @@ our @ISA = qw(Exporter);
 our @EXPORT_OK = ( );
 our @EXPORT    = qw();
 
-our $VERSION   = '0.01';
-our $REVISION  = '$Id: KIF.pm,v 1.2 2004/07/24 09:58:36 rho Exp rho $';
+our $VERSION   = '0.02';
+our $REVISION  = '$Id: KIF.pm,v 1.1.1.1 2004/07/25 23:49:52 rho Exp $';
 
 use Data::Dumper;
 
