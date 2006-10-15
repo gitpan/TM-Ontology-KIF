@@ -10,8 +10,8 @@ our @ISA = qw(Exporter);
 our @EXPORT_OK = ( );
 our @EXPORT    = qw();
 
-our $VERSION   = '0.02';
-our $REVISION  = '$Id: KIF.pm,v 1.1.1.1 2004/07/25 23:49:52 rho Exp $';
+our $VERSION   = '0.03';
+#our $REVISION  = '$Id: KIF.pm,v 1.1.1.1 2004/07/25 23:49:52 rho Exp $';
 
 use Data::Dumper;
 
@@ -36,16 +36,16 @@ my $grammar = q{
 
                        sentence  : '(' ( quantsent | logsent | relsent ) ')' { $return = $item[2]; }
 
-                       quantsent : 'forall' '(' variable(s) ')' sentence  { $return = [ 'forall', $item{'variable'}, $item{sentence} ]; } |
-                                   'exists' '(' variable(s) ')' sentence  { $return = [ 'exists', $item{'variable'}, $item{sentence} ]; }
+                       quantsent : 'forall' '(' variable(s) ')' sentence  { $return = [ 'forall', $item{'variable(s)'}, $item{sentence} ]; } |
+                                   'exists' '(' variable(s) ')' sentence  { $return = [ 'exists', $item{'variable(s)'}, $item{sentence} ]; }
 
-                       logsent   : 'not' sentence           { $return = [ 'not', $item{sentence}      ];} |
-                                   'and' sentence(s)        { $return = [ 'and', $item{sentence}      ];} |
-                                   'or'  sentence(s)        { $return = [ 'or',  $item{sentence}      ];} |
+                       logsent   : 'not' sentence           { $return = [ 'not', $item{'sentence'}      ];} |
+                                   'and' sentence(s)        { $return = [ 'and', $item{'sentence(s)'}      ];} |
+                                   'or'  sentence(s)        { $return = [ 'or',  $item{'sentence(s)'}      ];} |
                                    '=>'  sentence sentence  { $return = [ '=>',  $item[2], $item[3]   ];} |
                                    '<=>' sentence sentence  { $return = [ '<=>', $item[2], $item[3]   ];}
 
-                       relsent   : (word | variable ) term(s?)             { $return = [ $item[1], $item{'term'} ];}
+                       relsent   : (word | variable ) term(s?)             { $return = [ $item[1], $item{'term(s?)'} ]; }
 
                        term      : variable |
                                    funterm  |
@@ -201,6 +201,8 @@ sub parse {
 =head1 AUTHOR
 
 Robert Barta, E<lt>rho@bigpond.net.auE<gt>
+
+Since version 0.03: Nils Reiter, <reiter@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

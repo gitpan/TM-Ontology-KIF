@@ -1,5 +1,9 @@
 Revision history for Perl extension TM::Ontology::KIF.
 
+0.03 
+	- Bug fix in the grammar, sentence trees are now returned
+	  completely
+
 0.02  Mon Jul 26 16:14:20 EST 2004
 	- added a META.yml
 
